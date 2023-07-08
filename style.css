@@ -12,12 +12,13 @@ h1 {
 
 .container {
   display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr)); /* Use minmax(0, 1fr) for flexible column width */
-  grid-template-rows: repeat(3, minmax(0, 1fr)); /* Use minmax(0, 1fr) for flexible row height */
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  grid-template-rows: repeat(3, minmax(0, 1fr));
   grid-gap: 10px;
   max-width: 80%;
   margin: 0 auto;
 }
+
 
 .grid-item {
   display: flex;
@@ -43,11 +44,12 @@ h1 {
   justify-content: center;
   gap: 10px;
   flex-wrap: wrap;
+  margin-top: 20px;
 }
 
 .alphabet {
-  width: 80px; /* Decrease the width of the alphabet items */
-  aspect-ratio: 1;
+  width: 80px;
+  height: 80px;
   display: flex;
   align-items: center;
   justify-content: center;

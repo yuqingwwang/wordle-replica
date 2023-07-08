@@ -6,7 +6,6 @@ const alphabets = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', '
 
 for (let i = 0; i < 5; i++) {
   const gridItem = document.createElement("div");
-  gridItem.setAttribute("contenteditable", "true");
   gridItem.classList.add("grid-item");
   gridContainer.appendChild(gridItem);
 }
@@ -14,6 +13,29 @@ for (let i = 0; i < 5; i++) {
 gridContainer.after(alphabetsContainer);
 
 const gridItems = document.querySelectorAll('.grid-item');
+
+function setKeyboardInput(enabled) {
+  if (enabled) {
+    gridItems.forEach(gridItem => {
+      gridItem.contentEditable = 'true';
+    });
+  } else {
+    gridItems.forEach(gridItem => {
+      gridItem.removeAttribute('contenteditable');
+    });
+  }
+}
+
+function handleWindowResize() {
+  if (window.innerWidth <= 600) {
+    setKeyboardInput(false);
+  } else {
+    setKeyboardInput(true);
+  }
+}
+
+window.addEventListener('resize', handleWindowResize);
+handleWindowResize(); // Set initial state based on screen size
 
 gridItems.forEach((gridItem, index) => {
 
@@ -40,6 +62,7 @@ gridItems.forEach((gridItem, index) => {
       }
     }
   });
+  // only allows this for large screens
 
   gridItem.addEventListener('keydown', (e) => {
     if (e.key === 'Backspace' && gridItem.textContent.length === 0) {
@@ -75,7 +98,6 @@ for (let i = 0; i < alphabets.length; i++) {
   alphabetsContainer.appendChild(alphabet);
 
   alphabet.addEventListener('click', () => {
-    console.log("clicked")
     // target the next grid item that is empty
     const emptyGridItem = document.querySelector('.grid-item:empty');
     if (emptyGridItem) {
@@ -93,3 +115,18 @@ for (let i = 0; i < alphabets.length; i++) {
       selection.addRange(range);
     }
 })};
+
+
+// target enter button for small screens
+const enterButton = document.querySelector('.enter-button');
+enterButton.addEventListener('click', () => {
+ // check if all the grid items are filled
+  const gridItems = document.querySelectorAll('.grid-item');
+  const isGridFilled = Array.from(gridItems).every(gridItem => gridItem.textContent.length > 0);
+  if (isGridFilled) {
+    // get the text from the grid items in the last 5 grid items
+    const text = Array.from(gridItems).slice(-5).map(gridItem => gridItem.textContent);
+    console.log(text);
+  }
+}
+);

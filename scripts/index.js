@@ -56,3 +56,8 @@ gridItems.forEach((gridItem, index) => {
     }
   });
 });
+
+
+// placing cursor at the first tile when the page loads
+gridItems[0].focus();
+

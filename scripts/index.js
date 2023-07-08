@@ -4,7 +4,7 @@ alphabetsContainer.classList.add("alphabets-container");
 
 const alphabets = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
 
-for (let i = 0; i < 15; i++) {
+for (let i = 0; i < 5; i++) {
   const gridItem = document.createElement("div");
   gridItem.setAttribute("contenteditable", "true");
   gridItem.classList.add("grid-item");
@@ -22,11 +22,16 @@ gridItems.forEach((gridItem, index) => {
 
   gridItem.addEventListener('input', (event) => {
     const text = gridItem.textContent.trim().toUpperCase();
-    gridItem.textContent = text.slice(0, 1);
+    const alphabeticText = text.replace(/[^A-Z]/g, '');
+    gridItem.textContent = alphabeticText.slice(0, 1);
 
-    if (index < gridItems.length - 1) {
+    if (gridItem.textContent.length === 0) {
+      gridItem.focus();
+    }
+    else if (index < gridItems.length - 1) {
       gridItems[index + 1].focus();
-    } else {
+    }
+    else {
       const range = document.createRange();
       const selection = window.getSelection();
       const textNode = gridItem.firstChild;

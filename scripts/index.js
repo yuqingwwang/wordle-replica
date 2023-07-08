@@ -7,6 +7,7 @@ const gridContainer = document.getElementById("gridContainer");
 //   gridContainer.appendChild(gridItem);
 // }
 
+
 function getGridItems () {
   return document.querySelectorAll('.grid-item');
 }
@@ -14,7 +15,7 @@ function getGridItems () {
 function generateRow () {
   for (let i = 0; i < 5; i++) {
     const gridItem = document.createElement("div");
-    gridItem.setAttribute("contenteditable", "true");
+//     gridItem.setAttribute("contenteditable", "true");
     gridItem.classList.add("grid-item");
     gridContainer.appendChild(gridItem);
   }
@@ -27,6 +28,30 @@ function generateRow () {
 
 generateRow();
 
+function setKeyboardInput(enabled) {
+  if (enabled) {
+    gridItems.forEach(gridItem => {
+      gridItem.contentEditable = 'true';
+    });
+  } else {
+    gridItems.forEach(gridItem => {
+      gridItem.removeAttribute('contenteditable');
+    });
+  }
+}
+
+function handleWindowResize() {
+  if (window.innerWidth <= 600) {
+    setKeyboardInput(false);
+  } else {
+    setKeyboardInput(true);
+  }
+}
+
+window.addEventListener('resize', handleWindowResize);
+handleWindowResize(); // Set initial state based on screen size
+
+gridItems.forEach((gridItem, index) => {
 
 function applyEventListeners() {
   gridContainer.addEventListener('input', (event) => {
@@ -142,8 +167,79 @@ function addAlphabets() {
         selection.removeAllRanges();
         selection.addRange(range);
       }
+    }
+  });
+  // only allows this for large screens
+
+  gridItem.addEventListener('keydown', (e) => {
+    if (e.key === 'Backspace' && gridItem.textContent.length === 0) {
+      e.preventDefault();
+
+      if (index > 0) {
+        const prevGridItem = gridItems[index - 1];
+        prevGridItem.focus();
+
+        const range = document.createRange();
+        const selection = window.getSelection();
+        const textNode = prevGridItem.firstChild;
+        if (textNode) {
+          range.setStart(textNode, textNode.length); // Set the cursor at the end of the text
+          range.collapse(true);
+          selection.removeAllRanges();
+          selection.addRange(range);
+        }
+
+        prevGridItem.textContent = '';
+      }
+    }
+  });
+});
+
+// Placing cursor at the first tile when the page loads
+gridItems[0].focus();
+
+for (let i = 0; i < alphabets.length; i++) {
+  const alphabet = document.createElement("button");
+  alphabet.classList.add("alphabet");
+  alphabet.textContent = alphabets[i];
+  alphabetsContainer.appendChild(alphabet);
+
+  alphabet.addEventListener('click', () => {
+    // target the next grid item that is empty
+    const emptyGridItem = document.querySelector('.grid-item:empty');
+    if (emptyGridItem) {
+      emptyGridItem.textContent = alphabet.textContent;
+      emptyGridItem.focus();
+    }
+    // move the cursor to the right of the current grid item
+    const range = document.createRange();
+    const selection = window.getSelection();
+    const textNode = emptyGridItem.firstChild;
+    if (textNode) {
+      range.setStart(textNode, textNode.length); // Set the cursor at the end of the text
+      range.collapse(true);
+      selection.removeAllRanges();
+      selection.addRange(range);
+    }
+})};
+
+
+// target enter button for small screens
+const enterButton = document.querySelector('.enter-button');
+enterButton.addEventListener('click', () => {
+ // check if all the grid items are filled
+  const gridItems = document.querySelectorAll('.grid-item');
+  const isGridFilled = Array.from(gridItems).every(gridItem => gridItem.textContent.length > 0);
+  if (isGridFilled) {
+    // get the text from the grid items in the last 5 grid items
+    const text = Array.from(gridItems).slice(-5).map(gridItem => gridItem.textContent);
+    console.log(text);
+  }
+}
+);
     });
   }
 }
 
 addAlphabets();
+

@@ -16,9 +16,6 @@ gridContainer.after(alphabetsContainer);
 const gridItems = document.querySelectorAll('.grid-item');
 
 gridItems.forEach((gridItem, index) => {
-  const fontSize = parseInt(window.getComputedStyle(gridItem).height) + 'px';
-  let newSize = fontSize.split('px')[0] * 0.8;
-  gridItem.style.fontSize = newSize + 'px';
 
   gridItem.addEventListener('input', (event) => {
     const text = gridItem.textContent.trim().toUpperCase();

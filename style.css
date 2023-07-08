@@ -1,3 +1,7 @@
+body {
+  max-width: 90%;
+}
+
 .container {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
@@ -20,4 +24,23 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.alphabets-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.alphabet {
+  width: 100px;
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ccc;
+  font-size: 2rem;
 }

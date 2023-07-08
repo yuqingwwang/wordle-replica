@@ -1,13 +1,22 @@
 body {
-  max-width: 80%;
   margin: 0 auto;
+  font-family: 'Poppins', sans-serif;
+  padding: 20px;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 40px;
 }
 
 .container {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: repeat(3, 1fr);
+  grid-template-columns: repeat(5, minmax(0, 1fr)); /* Use minmax(0, 1fr) for flexible column width */
+  grid-template-rows: repeat(3, minmax(0, 1fr)); /* Use minmax(0, 1fr) for flexible row height */
   grid-gap: 10px;
+  max-width: 80%;
+  margin: 0 auto;
 }
 
 .grid-item {
@@ -16,6 +25,7 @@ body {
   justify-content: center;
   background-color: #ccc;
   aspect-ratio: 1;
+  font-size: 3rem;
 }
 
 .grid-item > div {
@@ -36,11 +46,17 @@ body {
 }
 
 .alphabet {
-  width: 100px;
+  width: 80px; /* Decrease the width of the alphabet items */
   aspect-ratio: 1;
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: #ccc;
   font-size: 2rem;
+}
+
+@media screen and (min-width: 800px) {
+  body {
+    width: 80%;
+  }
 }

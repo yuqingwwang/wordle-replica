@@ -6,6 +6,24 @@ function getGridItems() {
 
 function generateRow() {
 
+  // change the background color of the current row
+  const rowCount = document.getElementById('rowCount');
+  const currentRowCount = parseInt(rowCount.textContent);
+  const previousRow = document.querySelectorAll('.grid-item');
+
+  if(previousRow) {
+    // target last five items from previousRow
+    console.log(previousRow)
+    // loop through only the last five items in previousRow
+    // add a class of past-rows
+    previousRow.forEach((item, index) => {
+      if (index >= previousRow.length - 5) {
+        item.classList.add('past-rows');
+      }
+    }
+    )
+  }
+
   for (let i = 0; i < 5; i++) {
     const gridItem = document.createElement("div");
     gridItem.classList.add("grid-item");
@@ -14,8 +32,8 @@ function generateRow() {
   handleWindowResize();
 
   // increase row count
-  const rowCount = document.getElementById('rowCount');
-  const currentRowCount = parseInt(rowCount.textContent);
+  // const rowCount = document.getElementById('rowCount');
+  // const currentRowCount = parseInt(rowCount.textContent);
   rowCount.textContent = currentRowCount + 1;
   focusOnFirstItemOfNextRow(currentRowCount*5);
 }
@@ -93,7 +111,7 @@ function applyEventListeners() {
 
           const gridItems = getGridItems();
           const index = Array.from(gridItems).indexOf(target);
-          if (index > 0 && (index+1)%5 === 0) {
+          if (index > 0 && (index)%5 !== 0) {
             const prevGridItem = gridItems[index - 1];
             console.log('back to last letter')
             prevGridItem.focus();
@@ -121,7 +139,7 @@ function applyEventListeners() {
           });
           console.log(gridItemValues);
 
-          if (gridItems.length > 9) {
+          if (gridItems.length > 29) {
             if (!target.classList.contains('game-over')) {
               target.classList.add('game-over');
               alert('Game Over');

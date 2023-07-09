@@ -93,7 +93,7 @@ function applyEventListeners() {
 
           const gridItems = getGridItems();
           const index = Array.from(gridItems).indexOf(target);
-          if (index > 0 && (index+1)%5 === 0) {
+          if (index > 0 && (index)%5 !== 0) {
             const prevGridItem = gridItems[index - 1];
             console.log('back to last letter')
             prevGridItem.focus();
@@ -121,7 +121,7 @@ function applyEventListeners() {
           });
           console.log(gridItemValues);
 
-          if (gridItems.length > 9) {
+          if (gridItems.length > 29) {
             if (!target.classList.contains('game-over')) {
               target.classList.add('game-over');
               alert('Game Over');

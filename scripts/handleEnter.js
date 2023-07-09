@@ -9,7 +9,7 @@ enterButton.addEventListener('click', (e) => {
     const text = Array.from(gridItems).slice(-5).map(gridItem => gridItem.textContent);
     console.log(text);
     // if there is less than 9 grid items, add a new row
-    if (gridItems.length > 9) {
+    if (gridItems.length > 29) {
       if (!target.classList.contains('game-over')) {
         target.classList.add('game-over');
         alert('Game Over');

@@ -69,7 +69,16 @@ h2{
   font-size: 2rem;
 }
 
-.enter-button {
+.buttons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+.enter-button, .delete-button {
   width: 150px;
   height: 100px;
   display: flex;

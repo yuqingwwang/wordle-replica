@@ -10,6 +10,18 @@ h1 {
   font-size: 60px;
 }
 
+h2{
+  text-align: center;
+  margin: 5px;
+  font-size: 20px;
+}
+
+.attempt {
+  text-align: center;
+  display: inline-flex;
+  margin-bottom: 20px;
+}
+
 .container {
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr));

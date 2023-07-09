@@ -1,8 +1,9 @@
 function addAlphabets() {
+  const buttonsContainer = document.querySelector('.buttons');
   const alphabetsContainer = document.createElement("div");
   alphabetsContainer.classList.add("alphabets-container");
 
-  gridContainer.after(alphabetsContainer);
+  buttonsContainer.after(alphabetsContainer);
 
   const alphabets = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
 

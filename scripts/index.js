@@ -93,7 +93,7 @@ function applyEventListeners() {
 
           const gridItems = getGridItems();
           const index = Array.from(gridItems).indexOf(target);
-          if (index > 0) {
+          if (index > 0 && (index+1)%5 === 0) {
             const prevGridItem = gridItems[index - 1];
             console.log('back to last letter')
             prevGridItem.focus();
@@ -139,3 +139,32 @@ function applyEventListeners() {
 }
 
 applyEventListeners();
+
+function handleDelete(){
+  const deletButton = document.querySelector('.delete-button');
+  deletButton.addEventListener('click', (e) => {
+    console.log('delete button clicked');
+    const gridItems = getGridItems();
+    // don't allow delete if it's the first grid item of the row
+    // find the last grid item with text
+    let lastGridItemWithText;
+    for (let i = gridItems.length - 1; i >= 0; i--) {
+      if (gridItems[i].textContent.length > 0) {
+        lastGridItemWithText = gridItems[i];
+        break;
+      }
+    }
+    if (lastGridItemWithText) {
+      // only delete if it's not the first grid item of the row
+      const index = Array.from(gridItems).indexOf(lastGridItemWithText);
+      if ((index + 1) % 5 !== 0) {
+        console.log(index)
+        lastGridItemWithText.textContent = '';
+        lastGridItemWithText.focus();
+      }
+    }
+
+  });
+}
+
+handleDelete();

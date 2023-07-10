@@ -145,8 +145,8 @@ h2{
 
   .alphabet {
     flex: 0 0 10%;
-    font-size: 15px;
-    margin: 0 5px;
+    font-size: 12px;
+    margin: 0 3px;
     display: flex;
     align-items: center;
     justify-content: center;

@@ -1,29 +1,27 @@
-const gridContainer = document.getElementById("gridContainer");
-
 import { ANSWER } from "./constants.js";
 
+const gridContainer = document.getElementById("gridContainer");
 const answer = ANSWER;
+let rowCount = document.getElementById('rowCount');
 
 function getGridItems() {
   return document.querySelectorAll('.grid-item');
 }
 
 function generateRow() {
-
   // change the background color of the current row
-  const rowCount = document.getElementById('rowCount');
   const currentRowCount = parseInt(rowCount.textContent);
+
   const previousRow = document.querySelectorAll('.grid-item');
 
   if (previousRow) {
     // target last five items from previousRow
-    // loop through only the last five items in previousRow
     // add a class of past-rows
     previousRow.forEach((item, index) => {
       if (index >= previousRow.length - 5) {
         item.classList.add('past-rows');
       } else {
-        item.classList.remove('past-rows'); // Remove the class from other items
+        item.classList.remove('past-rows');
       }
     }
     )
@@ -37,10 +35,8 @@ function generateRow() {
   handleWindowResize();
 
   // increase row count
-  // const rowCount = document.getElementById('rowCount');
-  // const currentRowCount = parseInt(rowCount.textContent);
   rowCount.textContent = currentRowCount + 1;
-  focusOnFirstItemOfNextRow(currentRowCount*5);
+  focusOnFirstItemOfNextRow(currentRowCount * 5);
 }
 
 function focusOnFirstItemOfNextRow(index) {
@@ -202,6 +198,7 @@ function handleDelete(){
   const deletButton = document.querySelector('.delete-button');
   deletButton.addEventListener('click', (e) => {
     const gridItems = getGridItems();
+
     // don't allow delete if it's the first grid item of the row
     // find the last grid item with text
     let lastGridItemWithText;
@@ -232,11 +229,10 @@ function handleEnter() {
     const target = e.target;
     const gridItems = getGridItems();
     const answerArray = answer.split('');
-
-    const rowCount = document.getElementById('rowCount');
     const currentRowCount = parseInt(rowCount.textContent) - 1;
     // Check if all the grid items are filled
     const isGridFilled = Array.from(gridItems).every(gridItem => gridItem.textContent.length > 0);
+
     if (isGridFilled) {
       // Get the text from the grid items in the last 5 grid items
       const gridItemValuesArray = Array.from(gridItems).slice(-5).map(gridItem => gridItem.textContent);
@@ -281,4 +277,4 @@ function handleEnter() {
   });
 }
 
-handleEnter()
+handleEnter();

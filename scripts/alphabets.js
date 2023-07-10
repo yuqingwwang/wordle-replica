@@ -1,4 +1,4 @@
-import { QWERTY, ASDF, ZXCV } from "./constants.js";
+import { QWERTY, ASDF, ZXCV, QWERT, YUIOP, ASDFG, HJKL, XCVB} from "./constants.js";
 
 function addAlphabets() {
   const buttonsContainer = document.querySelector('.buttons');
@@ -10,7 +10,7 @@ function addAlphabets() {
   function updateLayout() {
     const isSmallScreen = window.innerWidth < 600; // Check if the screen width is smaller than 600px
 
-    const rows = isSmallScreen ? [ASDF, ZXCV] : [QWERTY, ASDF, ZXCV]; // Use different rows depending on the screen size
+    const rows = isSmallScreen ? [QWERT, YUIOP, ASDFG, HJKL, XCVB] : [QWERTY, ASDF, ZXCV];
 
     alphabetsContainer.innerHTML = ''; // Clear the previous layout
 

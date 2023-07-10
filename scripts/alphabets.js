@@ -7,44 +7,50 @@ function addAlphabets() {
 
   buttonsContainer.after(alphabetsContainer);
 
-  const rows = [QWERTY, ASDF, ZXCV];
+  function updateLayout() {
+    const isSmallScreen = window.innerWidth < 600; // Check if the screen width is smaller than 600px
 
-  function populate(array) {
-    const rowContainer = document.createElement("div");
-    rowContainer.classList.add("row-container");
-    alphabetsContainer.appendChild(rowContainer);
+    const rows = isSmallScreen ? [ASDF, ZXCV] : [QWERTY, ASDF, ZXCV]; // Use different rows depending on the screen size
 
-    for (let i = 0; i < array.length; i++) {
-      const alphabet = document.createElement("button");
-      alphabet.classList.add("alphabet");
-      alphabet.textContent = array[i];
-      rowContainer.appendChild(alphabet);
+    alphabetsContainer.innerHTML = ''; // Clear the previous layout
 
-      alphabet.addEventListener('click', () => {
-        // Target the next grid item that is empty
-        const emptyGridItem = document.querySelector('.grid-item:empty');
-        if (emptyGridItem) {
-          emptyGridItem.textContent = alphabet.textContent;
-          emptyGridItem.focus();
+    rows.forEach(row => {
+      const rowContainer = document.createElement("div");
+      rowContainer.classList.add("row-container");
+      alphabetsContainer.appendChild(rowContainer);
 
-          // Move the cursor to the right of the current grid item
-          const range = document.createRange();
-          const selection = window.getSelection();
-          const textNode = emptyGridItem.firstChild;
-          if (textNode) {
-            range.setStart(textNode, textNode.length); // Set the cursor at the end of the text
-            range.collapse(true);
-            selection.removeAllRanges();
-            selection.addRange(range);
+      row.forEach(alphabet => {
+        const alphabetButton = document.createElement("button");
+        alphabetButton.classList.add("alphabet");
+        alphabetButton.textContent = alphabet;
+        rowContainer.appendChild(alphabetButton);
+
+        alphabetButton.addEventListener('click', () => {
+          // Target the next grid item that is empty
+          const emptyGridItem = document.querySelector('.grid-item:empty');
+          if (emptyGridItem) {
+            emptyGridItem.textContent = alphabetButton.textContent;
+            emptyGridItem.focus();
+
+            // Move the cursor to the right of the current grid item
+            const range = document.createRange();
+            const selection = window.getSelection();
+            const textNode = emptyGridItem.firstChild;
+            if (textNode) {
+              range.setStart(textNode, textNode.length); // Set the cursor at the end of the text
+              range.collapse(true);
+              selection.removeAllRanges();
+              selection.addRange(range);
+            }
           }
-        }
+        });
       });
-    }
+    });
   }
 
-  rows.forEach(row => {
-    populate(row);
-  });
+  updateLayout(); // Initial layout setup
+
+  window.addEventListener('resize', updateLayout); // Update layout on window resize
 }
 
 addAlphabets();

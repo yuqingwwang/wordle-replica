@@ -16,16 +16,20 @@
     <h2>Attempt No.</h2>
     <h2 id="rowCount">0</h2>
   </div>
-
-
-  <!-- creating a grid of five by six-->
+  <div class="rules">
+    <ul>
+      <li>Try to guess the word in 6 tries.</li>
+      <li>A correct letter turns green.</li>
+      <li>A correct letter in the wrong place turns yellow.</li>
+      <li>An incorrect letter turns gray.</li>
+  </ul>
+  </div>
   <div class="container" id="gridContainer"></div>
   <div class="buttons">
     <button class="enter-button">Enter</button>
     <button class="delete-button">Delete</button>
   </div>
-  <script src="scripts/index.js"></script>
-  <script src="scripts/handleEnter.js"></script>
-  <script src="scripts/alphabets.js"></script>
+  <script src="scripts/index.js" type="module"></script>
+  <script src="scripts/alphabets.js" type="module"></script>
 </body>
 </html>

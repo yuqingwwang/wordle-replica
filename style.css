@@ -2,7 +2,7 @@ body {
   margin: 0 auto;
   font-family: 'Poppins', sans-serif;
   padding: 5px;
-  width: 95%;
+  max-width: 800px;
 }
 
 h1 {

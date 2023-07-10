@@ -109,7 +109,7 @@ h2 {
   background-color: #ccc;
 }
 
-@media screen and (min-width: 600px) {
+@media screen and (min-width: 900px) {
   body {
     width: 80%;
   }
@@ -122,7 +122,6 @@ h2 {
     font-size: 30px;
     margin: 0 10px;
     padding: 10px;
-    transition: background-color 0.3s ease; /* Smooth transition for background-color */
   }
 
   .enter-button,
@@ -136,7 +135,7 @@ h2 {
   }
 }
 
-@media screen and (max-width: 850px) {
+@media screen and (max-width: 899px) {
   .alphabets-container {
     display: flex;
     flex-wrap: wrap;
@@ -145,11 +144,12 @@ h2 {
 
   .alphabet {
     flex: 0 0 10%;
-    font-size: 20px;
+    font-size: 23px;
     margin: 0 5px;
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 15px;
   }
 
   .enter-button,

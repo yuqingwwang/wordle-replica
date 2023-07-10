@@ -19,7 +19,11 @@ h2{
 .attempt {
   text-align: center;
   display: inline-flex;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
+}
+
+.rules {
+  padding-left: 8px;
 }
 
 .container {
@@ -28,7 +32,8 @@ h2{
   grid-template-rows: repeat(3, minmax(0, 1fr));
   grid-gap: 10px;
   max-width: 80%;
-  margin: 0 auto;
+  margin: auto;
+  margin-top: 20px;
 }
 
 .past-rows {
@@ -140,12 +145,11 @@ h2{
 
   .alphabet {
     flex: 0 0 10%;
-    font-size: 20px;
+    font-size: 15px;
     margin: 0 5px;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: background-color 0.3s ease; /* Smooth transition for background-color */
   }
 
   .enter-button,

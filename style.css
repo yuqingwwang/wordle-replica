@@ -52,25 +52,24 @@ h2{
   align-items: center;
   justify-content: center;
 }
-
 .alphabets-container {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  gap: 10px;
-  flex-wrap: wrap;
   margin-top: 20px;
 }
 
-.alphabet {
-  width: 60px;
-  height: 60px;
+.row-container {
   display: flex;
-  align-items: center;
   justify-content: center;
-  background-color: #ccc;
-  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.alphabet {
+  width: 20px;
+  height: 20px;
+  font-size: 8px;
+  margin: 0 5px;
 }
 
 .buttons {
@@ -82,13 +81,14 @@ h2{
   flex-wrap: wrap;
   margin-top: 20px;
 }
+
 .enter-button, .delete-button {
-  width: 200px;
-  height: 80px;
+  width: 50px;
+  height: 50px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 2rem;
+  font-size: 1rem;
 }
 
 .correct {
@@ -106,5 +106,19 @@ h2{
 @media screen and (min-width: 800px) {
   body {
     width: 80%;
+  }
+  .alphabet {
+    width: 80px;
+    height: 80px;
+    font-size: 30px;
+    margin: 0 5px;
+  }
+  .enter-button, .delete-button {
+    width: 200px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
   }
 }

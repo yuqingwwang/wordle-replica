@@ -104,8 +104,8 @@ function applyEventListeners() {
 
 /* For Mobile */
 function handleDelete() {
-  const deletButton = document.querySelector('.delete-button');
-  deletButton.addEventListener('click', () => {
+  const deleteButton = document.querySelector('.delete-button');
+  deleteButton.addEventListener('click', () => {
     deleteLastWord()
   });
 }

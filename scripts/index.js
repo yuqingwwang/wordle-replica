@@ -134,6 +134,11 @@ function applyEventListeners() {
           }
         } else if (e.key === 'Enter') {
           e.preventDefault();
+          // don't do anything if there's a grid item with no text
+          if (target.textContent.length === 0) {
+            return;
+          }
+
           const gridItemValues = [];
           const gridItems = getGridItems();
           console.log('enter pressed on keyboard');
@@ -141,6 +146,7 @@ function applyEventListeners() {
           gridItems.forEach((gridItem) => {
             gridItemValues.push(gridItem.textContent);
           });
+          
           // checking gridItemValues against the answer, letter by letter
           // if letter and position match, add a class of correct
           // if letter matches but position doesn't, add a class of ok

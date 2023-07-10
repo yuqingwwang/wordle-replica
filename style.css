@@ -91,6 +91,18 @@ h2{
   font-size: 2rem;
 }
 
+.correct {
+  background-color: rgb(29, 148, 29);
+}
+
+.ok {
+  background-color: rgb(255, 145, 0);
+}
+
+.wrong {
+  background-color: #ccc;
+}
+
 @media screen and (min-width: 800px) {
   body {
     width: 80%;

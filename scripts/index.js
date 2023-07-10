@@ -1,4 +1,6 @@
 const gridContainer = document.getElementById("gridContainer");
+const answer = 'GHOST';
+const guess = '';
 
 function getGridItems() {
   return document.querySelectorAll('.grid-item');
@@ -19,6 +21,8 @@ function generateRow() {
     previousRow.forEach((item, index) => {
       if (index >= previousRow.length - 5) {
         item.classList.add('past-rows');
+      } else {
+        item.classList.remove('past-rows'); // Remove the class from other items
       }
     }
     )
@@ -137,7 +141,39 @@ function applyEventListeners() {
           gridItems.forEach((gridItem) => {
             gridItemValues.push(gridItem.textContent);
           });
-          console.log(gridItemValues);
+          // checking gridItemValues against the answer, letter by letter
+          // if letter and position match, add a class of correct
+          // if letter matches but position doesn't, add a class of ok
+          // if letter doesn't match, add a class of wrong
+
+          const rowCount = document.getElementById('rowCount');
+          const currentRowCount = parseInt(rowCount.textContent) - 1;
+
+          const answerArray = answer.split('');
+          const start = index - 4;
+          const end = index + 1;
+          const gridItemValuesArray = gridItemValues.slice(start, end);
+          console.log(gridItemValuesArray);
+
+          // if it's a perfect match, alert success and end game
+          if(gridItemValuesArray.join('') === answer) {
+            alert('You win!');
+            // refresh the page
+            location.reload();
+            return;
+          }
+
+          gridItemValuesArray.forEach((letter, index) => {
+             console.log(letter,answerArray[index], gridItems[currentRowCount*5 + index])
+            if (letter === answerArray[index]) {
+              gridItems[currentRowCount*5 + index].classList.add('correct');
+            } else if (answerArray.includes(letter)) {
+              gridItems[currentRowCount*5 + index].classList.add('ok');
+            } else {
+              gridItems[currentRowCount*5 + index].classList.add('wrong');
+            }
+          });
+
 
           if (gridItems.length > 29) {
             if (!target.classList.contains('game-over')) {
@@ -186,3 +222,7 @@ function handleDelete(){
 }
 
 handleDelete();
+
+function checkAnswer(guessArray, answer) {
+
+}
